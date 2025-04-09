@@ -1,0 +1,1 @@
+CREATE TABLE JSPDataBase(obj VARCHAR(25));
