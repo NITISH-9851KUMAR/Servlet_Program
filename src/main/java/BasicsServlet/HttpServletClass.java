@@ -4,6 +4,8 @@
  * HttpServlet Class
  * But HttpServlet class is frequently used in JSP program due to HTTP-based web apps
  * HttpServlet has more method but some commonly method that is frequently used in Program
+ * void doGet(HttpServletRequest request, HttpServletResponse response)
+ * void doPost(HttpServletRequest request, HttpServletResponse response)
  * */
 package BasicsServlet;
 
