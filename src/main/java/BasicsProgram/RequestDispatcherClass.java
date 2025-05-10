@@ -44,7 +44,9 @@ public class RequestDispatcherClass extends HttpServlet{
             out.println("<p> Branch: " + branch + "</p>");
 
             RequestDispatcher rd1= request.getRequestDispatcher("successfully");
-            rd1.forward(request, response);
+//            rd1.forward(request, response);  // when we will use forward then only rd1 will execute
+//            Other line of else condition will not execute
+            rd1.include(request, response);
         }
 
 
