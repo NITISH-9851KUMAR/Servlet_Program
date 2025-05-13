@@ -25,8 +25,8 @@ public class SessionTracking1 extends HttpServlet {
         out.println("<h1>Welcome to Servlet One</h1>");
         out.println("<h1> <a href='servlet2'>Go to Servlet2</a>\n</h1>");
 
-        Cookie c= new Cookie("user_name", name);
-        response.addCookie(c);
+//        Cookie c= new Cookie("user_name", name);
+//        response.addCookie(c);
 
     }
 }
