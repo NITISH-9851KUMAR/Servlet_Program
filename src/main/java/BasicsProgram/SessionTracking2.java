@@ -38,13 +38,13 @@ public class SessionTracking2 extends HttpServlet {
         String name= "";
 
         if(cookies == null) {
-            out.println("<h1>New User go to home page and submit you name ? Yes");
+                out.println("<a href=\"Session_Tracking.html\"> Home Page </a>");
+            out.println("");
             return;
         }
         else{
             for(Cookie c: cookies){
-                String temp= c.getName();
-                if(temp.equals("user_name")){
+                if(("user_name").equals(c.getName())){
                     name= c.getValue();
                     flag= true;
                 }
@@ -53,10 +53,9 @@ public class SessionTracking2 extends HttpServlet {
 
         if(flag){
             out.println("<h1>Name: "+name+"</h1>");
+            out.println("<a href=\"Session_Tracking.html\"> Home Page </a>");
         }else
             out.println("<h1>New User go to home page and submit you name");
 
-        out.println("<h1>Servlet Two</h1>");
-        out.println("<h1>Welcome to Servlet One</h1>");
     }
 }
