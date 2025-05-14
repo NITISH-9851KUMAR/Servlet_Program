@@ -18,6 +18,7 @@
 </head>
 <body style="background: url(image/img.png); background-size: cover; background-attachment: fixed">
 
+
 <div class="container">
 
     <div class="row">
@@ -36,9 +37,22 @@
                             <input type="text" name="user_name" placeholder="Enter User Name">
                             <input type="email" name="email" placeholder="Enter email">
                             <input type="password" name="password" placeholder="Enter Password">
+
+                            <div class="file-field input-field"> <!-- Taking file input -->
+                                <div class="btn">
+                                    <span>File</span>
+                                    <input name= "image" type="file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+
                             <button type="submit" class="btn">Submit</button>
                             <button type="reset" class="btn">Reset</button>
                         </form>
+
+
                     </div>
 
                     <div class="loader center-align" style="margin-top: 10px; display: none">
@@ -108,7 +122,9 @@
 <script
         src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+
+</script>
 
 <script>
     $(document).ready(function() {
@@ -116,7 +132,10 @@
 
         $("#myform").on('submit', function(event){
             event.preventDefault();
-            var f = $(this).serialize();
+
+            // var f = $(this).serialize();
+
+            let f= new FormData(this);
 
             console.log(f);
             $(".loader").show();
@@ -147,10 +166,12 @@
                     $(".loader").hide();
                     $(".form").show();
                     $("#msg").html("Something went wrong");
-                }
-            });
-        });
-    });
+                },
+                processData: false,
+                contentType: false
+            })
+        })
+    })
 
 </script>
 
