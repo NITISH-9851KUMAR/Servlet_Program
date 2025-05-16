@@ -6,17 +6,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.Part;
 import java.io.*;
+import javax.servlet.http.Part;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-@WebServlet("/Form")
+@WebServlet("/photo-upload")
 @MultipartConfig
 
-public class Form extends HttpServlet {
+public class PhotoUpload extends HttpServlet {
 
     private static String url= "jdbc:oracle:thin:@127.0.0.1:1521:XE";
     private static String userName= "system";
@@ -28,19 +27,18 @@ public class Form extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out= response.getWriter();
 
-        String name= request.getParameter("user_name");
+        String name= request.getParameter("name");
         String email= request.getParameter("email");
-        String password= request.getParameter("password");
-        Part part= request.getPart("image"); // Part is type of file store photo
-        String fileName= part.getSubmittedFileName();
-        out.println(fileName);
+        String password= request.getParameter("pass");
+        Part part= request.getPart("fileInput"); // Part type of Statement store file type input
+        String fileName= part.getSubmittedFileName(); // get the file name through part object
 
-        // JDBC Program
 
         try{
 
             Thread.sleep(2000);
 
+            // JDBC Program
             Connection connection= DriverManager.getConnection(url, userName, pass);
 
             String query= "INSERT INTO form VALUES(?, ?, ?, ?)";
@@ -51,25 +49,27 @@ public class Form extends HttpServlet {
             pStmt.setString(4, fileName);
 
             pStmt.executeUpdate();
-            // file upload
-            InputStream is= part.getInputStream();
-            byte[] data= new byte[is.available()];
-            is.read(data);
-            String path= request.getRealPath("/")+"image"+ File.separator+fileName;
-            out.println(path);
-            FileOutputStream fos= new FileOutputStream(path);
-            fos.write(data);
-            fos.close();
-            out.println("done");
-//            System.out.println("Data Successfully save to the Database");
-////
-//            RequestDispatcher rd= request.getRequestDispatcher("Signup.jsp");
-//            rd.include(request, response);
+            pStmt.close();
 
+            // File store in drive
+            String path= request.getRealPath("/")+"image"+File.separator+fileName;
+
+            InputStream stream = part.getInputStream();
+            FileOutputStream fos = new FileOutputStream(path);
+
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = stream.read(buffer)) != -1) {
+                fos.write(buffer, 0, bytesRead);
+            }
+
+            fos.close();
+            stream.close();
+
+            out.println("success"); // send respond to the AJAX
         }catch(Exception e){
             e.printStackTrace();
         }
-
 
     }
 }
