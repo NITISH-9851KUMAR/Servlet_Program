@@ -35,10 +35,10 @@
                 <div class="card-content" >
 
                     <!-- Now form will Start, write all function such as form, loader class etc-->
-                    <h5 style="margin-top: 8px" class="center-align">Register here</h5>
-                    <h5 id="msg" class="center-align"></h5>
 
                    <div class="form-container "> <!-- Form Container -->
+                       <h5 style="margin-top: 8px" class="center-align">Register here</h5>
+                       <h5 id="msg" class="center-align"></h5>
 
                         <form action="Form2" method="post" id="myForm"> <!-- From Start from there -->
 
@@ -106,10 +106,7 @@
                             </div>
                         </div>
                         <h5>Please Wait...</h5>
-
-
                     </div> <!-- Loader class -->
-
                 </div> <!-- card-content class -->
             </div>
         </div>
