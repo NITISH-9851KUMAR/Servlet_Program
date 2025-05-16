@@ -40,7 +40,7 @@ public class AjaxClass extends HttpServlet {
             pStmt.setString(2, email);
             pStmt.setString(3, password);
 
-//            pStmt.executeUpdate();
+            pStmt.executeUpdate();
             connection.close();
 
             out.print("success"); // send response back to AJAX
