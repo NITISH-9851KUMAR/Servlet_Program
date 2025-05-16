@@ -108,12 +108,12 @@
                         <h5>Please Wait...</h5>
                     </div> <!-- Loader class -->
                 </div> <!-- card-content class -->
-            </div>
-        </div>
+            </div> <!--  card class -->
 
-    </div>
+        </div> <!-- col decide class -->
 
-</div> <!-- Container class -->
+    </div> <!-- row under container -->
+</div> <!-- Container Class -->
 
 
 <script
